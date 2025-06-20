@@ -1,0 +1,9 @@
+torch
+tqdm
+numpy
+ultralytics
+matplotlib
+scikit-learn
+geopandas
+follium
+xgboost

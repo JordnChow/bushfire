@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>NSW Hotspots Map</title>
+  <style>
+    #map-container {
+      display: none;
+      margin-top: 20px;
+    }
+    iframe {
+      width: 100%;
+      height: 600px;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>NSW Wildfire Prediction</h1>
+  <button onclick="generateMap()">Generate and Show Map</button>
+
+  <div id="map-container">
+    <iframe id="map-frame" src=""></iframe>
+  </div>
+
+  <script>
+    function generateMap() {
+      fetch('/generate-map', { method: 'POST' })
+        .then(response => {
+          if (response.ok) {
+            print(response)
+            // Delay slightly to ensure the file has been written
+            setTimeout(() => {
+              document.getElementById('map-frame').src = '/static/nsw_hotspots_map.html';
+              document.getElementById('map-container').style.display = 'block';
+            }, 1000);
+          } else {
+            alert("Failed to generate map.");
+          }
+        });
+    }
+  </script>
+</body>
+</html>
